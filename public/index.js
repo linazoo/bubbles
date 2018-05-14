@@ -24,14 +24,18 @@ function dropBox(){
     style:  "width:" +size+ "px; height:"+size+"px; left:" + length+  "px; transition: transform " +velocity+ "ms linear;"
   });
   
+
+  var pointValue = size < 100 ? 2 : 1;
+
+  thisBox.data('points', pointValue);
+
   //set data and bg based on data
-  thisBox.data("test", Math.round(Math.random()));
-  if(thisBox.data("test")){
+  thisBox.data("pop", Math.round(Math.random()));
+  if(thisBox.data("pop")){
     thisBox.css({"background": "url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Decorative-Elements-PNG/Transparent_Bubble_PNG_Clip_Art_Image.png')", "background-size":"contain"});
   } else {
     thisBox.css({"background": "url('https://opengameart.org/sites/default/files/BubbleSimple.png')", "background-size":"contain"});
   }
-  
   
   //insert gift element
   $(".game").append(thisBox);
@@ -53,7 +57,7 @@ for (i = 0; i < 10; i++) {
 }
 
 $(document).on('click', '.box', function(){
-    score += 1;
+  score += $(this).data('points')
   $(".score").html(score);
   $(this).remove();
 });
